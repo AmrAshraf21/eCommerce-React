@@ -15,7 +15,7 @@ function Navbar() {
 			<nav className="navbar navbar-expand-lg bg-body-tertiary">
 				<div className="container-fluid custom-container">
 					<a className="navbar-brand" href="/">
-						<img src="../../../public/images/1.png" />
+						<img src="/images/1.png" />
 					</a>
 					<button
 						className="navbar-toggler"
