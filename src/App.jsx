@@ -14,44 +14,46 @@ import Cart from "./pages/Cart/Cart";
 import { CartProvider } from "./components/context/CartContext/CartProvider";
 import { AuthProvider } from "./components/context/AuthContext/AuthProvider";
 import { AuthContext } from "./components/context/AuthContext/AuthContext";
+import { LoadingProvider } from "./components/context/LoadingContext/LoadingProvider";
 // import { lazy,Suspense } from "react";
 export default function App() {
 	const [quantity, setQuantity] = useState(0);
 	const { loggedIn } = useContext(AuthContext);
-	
-	
+
 	// const About = lazy(()=>import('./pages/About/About.jsx'));
 	// const ProductDetails = lazy(()=>import('./components/ProductDetails/ProductDetails.jsx'))
 	return (
-		<CartProvider>
-			<QuantityContext.Provider value={{ quantity, setQuantity }}>
-				<Navbar></Navbar>
-				{/* <Suspense fallback={<div>Loading...</div>} /> */}
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/about" element={<About />} />
-					<Route
-						path="/cart"
-						element={
-							<ProtectedRoute isLoggedIn={loggedIn}>
-								<Cart />
-							</ProtectedRoute>
-						}>
-						<Route path="/cart" element={<Cart />} />
-					</Route>
+		<LoadingProvider>
+			<CartProvider>
+				<QuantityContext.Provider value={{ quantity, setQuantity }}>
+					<Navbar></Navbar>
+					{/* <Suspense fallback={<div>Loading...</div>} /> */}
+					<Routes>
+						<Route path="/" element={<Home />} />
+						<Route path="/about" element={<About />} />
+						<Route
+							path="/cart"
+							element={
+								<ProtectedRoute isLoggedIn={loggedIn}>
+									<Cart />
+								</ProtectedRoute>
+							}>
+							<Route path="/cart" element={<Cart />} />
+						</Route>
 
-					<Route
-						path="/product/:id"
-						element={
-							// <ProductRoute>
-							<ProductDetails />
-							// </ProductRoute>
-						}
-					/>
-					<Route path="/login" element={<Login />} />
-					<Route path="/register" element={<Register />} />
-				</Routes>
-			</QuantityContext.Provider>
-		</CartProvider>
+						<Route
+							path="/product/:id"
+							element={
+								// <ProductRoute>
+								<ProductDetails />
+								// </ProductRoute>
+							}
+						/>
+						<Route path="/login" element={<Login />} />
+						<Route path="/register" element={<Register />} />
+					</Routes>
+				</QuantityContext.Provider>
+			</CartProvider>
+		</LoadingProvider>
 	);
 }
