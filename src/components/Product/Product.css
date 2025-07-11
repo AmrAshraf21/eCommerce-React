@@ -1,0 +1,21 @@
+    
+.card{
+    width: 100%;
+    border: 5px solid rgb(224, 200, 200);
+    border-radius: 20px;
+    padding: 3rem;
+}
+
+.card .image{
+    width: 100%;
+
+}
+
+.image img{
+    width: 100%;
+}
+
+i{
+    color: rgb(235, 201, 11);
+}
+
